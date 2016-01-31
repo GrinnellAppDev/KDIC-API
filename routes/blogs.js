@@ -42,7 +42,6 @@ router.get('/', function(req, res, next) {
           //artcle object
           var articleJson = {
             articleTitle: "",
-            fullArticleUrl: "",
             articleText: "",
             datePosted: "",
             author: ""
@@ -51,11 +50,9 @@ router.get('/', function(req, res, next) {
           $(this).each(function(){
 
             articleJson.articleTitle = $(this).find('.entry-header').first().children().first().text();
-            articleJson.fullArticleUrl = 'nil';
             articleJson.articleText = $(this).find('.entry-post').first().children().first().text();
             articleJson.datePosted = $(this).find('.posted-on').first().first().text();
             articleJson.author = $(this).find('.byline').first().first().text();
-
           });
           blogsJson.articles.push(articleJson);
         });
