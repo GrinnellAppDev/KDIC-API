@@ -37,28 +37,26 @@ router.get('/', function(req, res, next) {
         data.children().each(function(){
 
           //varticle objects
-          var articleTitle, fullArticleUrl, articleText, datePosted, author, imageUrl, youtubeUrl;
+          var articleTitle, fullArticleUrl, articleText, datePosted, author, articleImageUrl, youtubeUrl;
 
           //artcle object
           var articleJson = {
             articleTitle: "",
-            fullArticleUrl: "",
             articleText: "",
             datePosted: "",
             author: "",
-            imageUrl: "",
+            articleImageUrl: "",
             youtubeUrl: ""
           }
 
           $(this).each(function(){
 
             articleJson.articleTitle = $(this).find('.entry-header').first().children().first().text();
-            articleJson.fullArticleUrl = 'nil';
-            articleJson.articleText = $(this).find('.entry-post').first().children().first().text();
+            articleJson.articleText = $(this).find('.entry-post').text();
             articleJson.datePosted = $(this).find('.posted-on').first().first().text();
             articleJson.author = $(this).find('.byline').first().first().text();
-            articleJson.imageUrl = $(this).find('.entry-post').children().first().children().first().attr('src');
-            console.log($(this).find('.entry-post').children().first().children().first().attr('src'));
+            articleJson.articleImageUrl = $('img',this).attr('src');
+            articleJson.youtubeUrl = $('iframe',this).attr('src');
 
           });
           blogsJson.articles.push(articleJson);
