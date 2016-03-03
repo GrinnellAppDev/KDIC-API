@@ -37,19 +37,21 @@ router.get('/', function(req, res, next) {
         data.children().each(function(){
 
           //varticle objects
-          var articleTitle, fullArticleUrl, articleText, datePosted, author
+          var articleTitle, fullArticleUrl, articleText, datePosted, author, articleUrl
 
           //artcle object
           var articleJson = {
             articleTitle: "",
             articleText: "",
             datePosted: "",
-            author: ""
+            author: "",
+            articleUrl: ""
           }
 
           $(this).each(function(){
 
             articleJson.articleTitle = $(this).find('.entry-header').first().children().first().text();
+            articleJson.articleUrl = $('.title-post',this).find('h2 a').attr('href')
             articleJson.articleText = $(this).find('.entry-post').first().children().first().text();
             articleJson.datePosted = $(this).find('.posted-on').first().first().text();
             articleJson.author = $(this).find('.byline').first().first().text();
